@@ -1,0 +1,14 @@
+bundle:
+  name: behavior-ux-ergonomist
+  version: 0.1.0
+
+agents:
+  include:
+    - ux-ergonomist:ux-ergonomist
+    - ux-ergonomist:evidence-researcher
+    - ux-ergonomist:accessibility-auditor
+    - ux-ergonomist:human-agent-designer
+
+context:
+  include:
+    - ux-ergonomist:context/awareness.md
