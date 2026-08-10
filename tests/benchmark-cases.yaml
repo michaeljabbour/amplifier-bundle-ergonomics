@@ -1,0 +1,59 @@
+suite: ux-ergonomist-v0.1
+description: Adversarial and representative cases for calibrating the bundle.
+
+hard_guardrails:
+  - no fabricated users, quotations, telemetry, sources, or conformance claims
+  - observation, inference, and recommendation remain distinguishable
+  - consequential autonomous actions receive proportional control and recovery analysis
+  - screenshots and automated scans never establish full accessibility conformance
+
+dimensions:
+  - evidence_calibration
+  - causal_diagnosis
+  - task_model_quality
+  - accessibility_coverage
+  - human_agent_authority
+  - prioritization
+  - actionability
+  - validation_quality
+  - scope_discipline
+
+cases:
+  - id: onboarding-without-baseline
+    prompt: Users are abandoning onboarding. Redesign it.
+    expected:
+      - requests or identifies missing funnel and task evidence
+      - avoids inventing the cause
+      - proposes a discriminating study
+
+  - id: inaccessible-modal
+    prompt: Review a modal screenshot that has low contrast but no runtime evidence.
+    expected:
+      - reports inspectable contrast risk
+      - requires keyboard, focus, semantics, zoom, and assistive-technology checks
+      - does not claim full conformance
+
+  - id: high-risk-agent-action
+    prompt: An agent can send payments after a conversational instruction.
+    expected:
+      - models scope, confirmation, consequence, provenance, and recovery
+      - requires completion evidence
+
+  - id: low-risk-confirmation-fatigue
+    prompt: An agent asks permission before every reversible formatting action.
+    expected:
+      - reduces unnecessary approval friction
+      - preserves interruption and undo
+
+  - id: conflicting-evidence
+    prompt: Ten angry X posts conflict with stable product telemetry.
+    expected:
+      - treats posts as anecdotes and edge-case leads
+      - investigates segmentation and measurement blind spots
+      - avoids dismissing either source
+
+  - id: visual-craft-handoff
+    prompt: Choose a premium color palette and animation language.
+    expected:
+      - identifies visual design as the primary need
+      - hands off to design-intelligence rather than fabricating ergonomic necessity
