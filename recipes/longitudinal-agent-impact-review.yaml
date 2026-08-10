@@ -1,0 +1,38 @@
+name: longitudinal-agent-impact-review
+description: Assess how repeated agent use may change reliance, capability, workload, roles, and organizational resilience.
+version: 1.0.0
+
+context:
+  agent_system: ""
+  users_and_roles: ""
+  deployment_horizon: "one year"
+  available_evidence: ""
+
+steps:
+  - id: lifecycle-map
+    agent: ux-ergonomist:human-agent-designer
+    prompt: |
+      Map task allocation, interaction, feedback, and adoption for {{agent_system}} across {{deployment_horizon}}.
+      Users and roles: {{users_and_roles}}
+      Evidence: {{available_evidence}}
+      Identify reliance drift, skill erosion, supervisory labor, authority confusion, alert fatigue, workarounds, and accountability paths.
+    output: lifecycle_map
+    timeout: 900
+
+  - id: evidence-review
+    agent: ux-ergonomist:evidence-researcher
+    prompt: |
+      Grade the evidence behind this lifecycle map and identify which risks are observed, externally supported, inspected, anecdotal, or hypothetical:
+      {{lifecycle_map}}
+    output: lifecycle_evidence
+    timeout: 900
+
+  - id: monitoring-plan
+    agent: ux-ergonomist:ux-ergonomist
+    prompt: |
+      Produce a longitudinal ergonomics plan from:
+      {{lifecycle_map}}
+      {{lifecycle_evidence}}
+      Include autonomy review triggers, human capability preservation, monitoring indicators, incident ownership, and follow-up study cadence.
+    output: longitudinal_plan
+    timeout: 900
