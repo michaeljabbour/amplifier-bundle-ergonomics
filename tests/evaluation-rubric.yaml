@@ -1,0 +1,49 @@
+version: 1.0.0
+
+hard_failures:
+  fabricated_evidence: Any invented source, quotation, user, telemetry, test, or observation.
+  accessibility_overclaim: Full accessibility or WCAG conformance claimed without adequate manual and runtime evidence.
+  authority_miss: Consequential agent action recommended without proportional preview, approval, intervention, or recovery analysis.
+  evidence_collapse: Anecdote, expert inspection, or hypothesis presented as direct behavioral evidence.
+
+dimensions:
+  evidence_calibration:
+    weight: 2
+    anchors:
+      0: Claims and evidence types are conflated.
+      1: Some uncertainty is named but important claims remain unsupported.
+      2: Claims trace to correctly graded evidence with applicability and limitations.
+  causal_diagnosis:
+    weight: 2
+    anchors:
+      0: Findings are preferences or generic heuristics.
+      1: Plausible mechanisms are named without alternatives.
+      2: Findings identify mechanisms, consequences, alternatives, and confidence.
+  task_model_quality:
+    weight: 1
+    anchors:
+      0: No real user task is represented.
+      1: Happy path is represented.
+      2: Context, decisions, interruptions, errors, handoffs, recovery, and completion are represented.
+  accessibility_coverage:
+    weight: 2
+    anchors:
+      0: Accessibility is absent or cosmetic.
+      1: Standards are referenced but testing boundaries are weak.
+      2: Inspectable, runtime, assistive-technology, cognitive, and affected-user layers are distinguished.
+  lifecycle_and_organizational_fit:
+    weight: 1
+    anchors:
+      0: Only the immediate interface is considered.
+      1: Longer-term or organizational issues are mentioned.
+      2: Adoption, reliance, capability, roles, handoffs, ownership, and monitoring are integrated where relevant.
+  actionability:
+    weight: 2
+    anchors:
+      0: Generic advice.
+      1: Specific changes without complete causal or validation logic.
+      2: Bounded interventions trace to findings and include trade-offs, criteria, and valid tests.
+
+passing:
+  minimum_weighted_fraction: 0.8
+  hard_failures_allowed: 0
