@@ -10,6 +10,8 @@ This repository packages evidence-led ergonomics and UX capabilities for Microso
 - Put heavy reference material behind agent context sinks.
 - Keep agents provider-neutral through `model_role`.
 - Recipes must name explicit inputs, outputs, agents, and timeouts.
+- Modes must define explicit identity, tool policy, completion contract, and intentional transitions.
+- Procedural methodology belongs in `skills/`; domain reference belongs in agent or mode-gated context.
 
 ## Quality rules
 
@@ -19,3 +21,4 @@ This repository packages evidence-led ergonomics and UX capabilities for Microso
 - Every consequential recommendation needs an acceptance criterion.
 - Update `tests/benchmark-cases.yaml` when changing an agent's scope or output contract.
 - Validate YAML, frontmatter, namespace references, and archive integrity before release.
+- Run `python tests/validate_bundle.py` before publishing.
