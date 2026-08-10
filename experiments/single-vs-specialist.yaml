@@ -1,0 +1,24 @@
+name: single-vs-specialist
+description: Compare a single UX Ergonomist pass with bounded specialist delegation.
+
+variants:
+  - id: single
+    agent: ux-ergonomist:ux-ergonomist
+    delegation: disabled
+  - id: specialist
+    agent: ux-ergonomist:ux-ergonomist
+    delegation: enabled
+
+dataset: tests/benchmark-cases.yaml
+measures:
+  - unsupported_claim_rate
+  - evidence_calibration
+  - finding_recall
+  - recommendation_precision
+  - accessibility_coverage
+  - human_agent_authority
+  - actionability
+  - latency
+  - token_cost
+
+decision_rule: Prefer specialist delegation only when quality improvement justifies coordination, latency, and token cost.
