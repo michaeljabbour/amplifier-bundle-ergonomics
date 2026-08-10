@@ -143,6 +143,16 @@ Use `N/A — <reason>` when an item does not apply. Stop and report the missing 
 
 @ux-ergonomist:context/knowledge/source-policy.md
 
+@ux-ergonomist:context/knowledge/lifecycle-ergonomics.md
+
+@ux-ergonomist:context/knowledge/adversarial-ergonomics.md
+
+@ux-ergonomist:context/knowledge/macroergonomics.md
+
+@ux-ergonomist:context/knowledge/cognitive-accessibility.md
+
+@ux-ergonomist:context/knowledge/temporal-interaction.md
+
 ---
 
 @foundation:context/shared/common-agent-base.md
