@@ -1,0 +1,37 @@
+name: sociotechnical-workflow-review
+description: Review a workflow across people, agents, systems, handoffs, incentives, exceptions, and organizational ownership.
+version: 1.0.0
+
+context:
+  workflow: ""
+  actors: ""
+  organizational_context: ""
+  available_evidence: ""
+
+steps:
+  - id: system-map
+    agent: ux-ergonomist:ux-ergonomist
+    prompt: |
+      Map {{workflow}} across actors {{actors}} in {{organizational_context}}.
+      Evidence: {{available_evidence}}
+      Represent responsibilities, information flow, decisions, handoffs, exceptions, incentives, local optimizations, failure containment, and feedback loops.
+    output: system_map
+    timeout: 900
+
+  - id: failure-analysis
+    agent: ux-ergonomist:human-agent-designer
+    prompt: |
+      Analyze this sociotechnical system for authority gaps, automation surprises, escalation failures, hidden labor, unsafe workarounds, and recovery breakdowns:
+      {{system_map}}
+    output: sociotechnical_failures
+    timeout: 900
+
+  - id: decision-package
+    agent: ux-ergonomist:ux-ergonomist
+    prompt: |
+      Produce prioritized interventions and validation criteria from:
+      {{system_map}}
+      {{sociotechnical_failures}}
+      Identify when the proper intervention is organizational rather than an interface change.
+    output: sociotechnical_review
+    timeout: 900
