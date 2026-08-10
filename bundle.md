@@ -1,10 +1,11 @@
 ---
 bundle:
   name: ux-ergonomist
-  version: 0.1.0
+  version: 0.2.0
 
 includes:
   - bundle: foundation
+  - bundle: git+https://github.com/microsoft/amplifier-bundle-modes@main
   - bundle: ux-ergonomist:behaviors/ux-ergonomist
 ---
 
