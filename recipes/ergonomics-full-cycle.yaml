@@ -1,0 +1,91 @@
+name: ergonomics-full-cycle
+description: Run the complete evidence-led ergonomics lifecycle from framing through verified handoff.
+version: 1.0.0
+
+context:
+  target: ""
+  users_and_task: ""
+  decision: ""
+  available_evidence: ""
+  constraints: ""
+  risk_context: ""
+
+steps:
+  - id: frame
+    agent: ux-ergonomist:ux-ergonomist
+    prompt: |
+      FRAME PHASE
+      Target: {{target}}
+      Users and task: {{users_and_task}}
+      Decision: {{decision}}
+      Available evidence: {{available_evidence}}
+      Constraints: {{constraints}}
+      Risk context: {{risk_context}}
+
+      Produce only the decision frame, assumptions, task boundary, evidence needs, and failure cost. Do not diagnose or recommend yet.
+    output: frame
+    timeout: 600
+
+  - id: research
+    agent: ux-ergonomist:evidence-researcher
+    prompt: |
+      RESEARCH PHASE
+      Build a claim-level evidence map for this frame:
+      {{frame}}
+      Use direct product evidence, primary research, standards, expert inspection, and anecdotes distinctly. State applicability and gaps.
+    output: evidence_map
+    timeout: 900
+
+  - id: review
+    agent: ux-ergonomist:ux-ergonomist
+    prompt: |
+      REVIEW PHASE
+      Frame: {{frame}}
+      Evidence: {{evidence_map}}
+
+      Diagnose task, cognitive, perceptual, motor, accessibility, temporal, adversarial, lifecycle, organizational, and human-agent breakdowns. Produce findings, not solutions.
+    output: diagnostic_review
+    timeout: 900
+
+  - id: recommend
+    agent: ux-ergonomist:ux-ergonomist
+    prompt: |
+      RECOMMEND PHASE
+      Frame: {{frame}}
+      Evidence: {{evidence_map}}
+      Findings: {{diagnostic_review}}
+
+      Produce bounded recommendations with causal mechanisms, trade-offs, evidence levels, accessibility and lifecycle consequences, acceptance criteria, and validation methods.
+    output: recommendation_set
+    timeout: 900
+
+  - id: verify
+    agent: ux-ergonomist:evidence-researcher
+    prompt: |
+      VERIFY PHASE
+      Adversarially inspect this package for unsupported claims, source mismatch, alternative explanations, missing users, excessive accessibility claims, weak criteria, and invalid study logic.
+
+      Frame: {{frame}}
+      Evidence: {{evidence_map}}
+      Findings: {{diagnostic_review}}
+      Recommendations: {{recommendation_set}}
+
+      Return PASS, REVISE, or BLOCKED and the minimum required corrections.
+    output: verification
+    timeout: 900
+
+  - id: finish
+    agent: ux-ergonomist:ux-ergonomist
+    prompt: |
+      FINISH PHASE
+      Assemble the final decision package. Apply required corrections from verification; do not conceal a BLOCKED result.
+
+      Frame: {{frame}}
+      Evidence: {{evidence_map}}
+      Findings: {{diagnostic_review}}
+      Recommendations: {{recommendation_set}}
+      Verification: {{verification}}
+
+      Include decision, evidence, prioritized findings, recommendations, criteria, validation, limitations, owners, monitoring, and next review trigger.
+    output: final_decision_package
+    timeout: 900
