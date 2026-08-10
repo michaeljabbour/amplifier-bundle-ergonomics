@@ -27,26 +27,52 @@ Version 0.2.0 adds an automatic six-mode workflow, reusable procedural skills, l
 - an adversarial benchmark suite
 - an evidence-backed design brief
 
-## Use
+## Install
 
-Run directly:
+Content-only bundle -- markdown, YAML, and skill definitions. Nothing to build.
 
 ```bash
-amplifier run --bundle ./bundle.md "Review this agent workflow for user control, recovery, and measurable UX outcomes"
+amplifier bundle add "git+https://github.com/michaeljabbour/amplifier-bundle-ergonomics@main"
+amplifier bundle use ux-ergonomist
 ```
+
+Activate with `ux-ergonomist`, the registered bundle name -- not `amplifier-bundle-ergonomics`, the repo name. That mismatch is the most common point of confusion here.
+
+Every other path -- running with no install, local development, composing into your own bundle, capability caveats, troubleshooting -- is in [`docs/INSTALL.md`](docs/INSTALL.md).
+
+## Try these three first
+
+**1. Run the six-mode workflow on a real flow.** The headline of 0.2.0. It frames the problem, gathers evidence, reviews, recommends, verifies, and closes -- advancing on its own once each phase contract is satisfied, and pausing when it genuinely needs you.
+
+```text
+/ergonomics-frame
+Review the failed-job recovery workflow for operations analysts.
+```
+
+**2. Design the human control model for an agent.** The layer visual design bundles do not cover: who decides what, when a human gets asked, and how a bad call gets undone.
+
+```text
+Design the approval, intervention, and recovery model for this autonomous agent.
+```
+
+**3. Turn raw complaints into a ranked study plan.** Messy evidence in; graded hypotheses and the lightest valid study out -- with what you cannot yet conclude stated plainly rather than papered over.
+
+```text
+Turn these support complaints into ranked UX hypotheses and a study plan.
+```
+
+## Use
 
 Compose only the behavior into another bundle:
 
 ```yaml
 includes:
-  - bundle: git+https://github.com/YOUR-ORG/amplifier-bundle-ux-ergonomist@main#subdirectory=behaviors/ux-ergonomist.yaml
+  - bundle: git+https://github.com/michaeljabbour/amplifier-bundle-ergonomics@main#subdirectory=behaviors/ux-ergonomist.yaml
 ```
 
-Typical requests:
+Other requests it handles well:
 
 - Review this onboarding flow and tell me what evidence we still need.
-- Design the human approval and recovery model for this autonomous agent.
-- Turn these support complaints into ranked UX hypotheses and a study plan.
 - Audit this workflow for cognitive and accessibility barriers.
 - Write measurable UX acceptance criteria for this feature.
 
@@ -118,3 +144,7 @@ Pair it with Microsoft's design-intelligence bundle when the task needs both erg
 ## Status
 
 Version 0.2.0 is research-backed but not yet empirically calibrated. Run the included experiments and benchmark cases before treating severity ratings, delegation choices, or recommendations as calibrated.
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).

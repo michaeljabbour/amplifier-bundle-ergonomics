@@ -1,0 +1,97 @@
+// This repository packages UX ergonomics capabilities for Amplifier: a small team of
+// specialist reviewers (usability, accessibility, evidence research, human-agent design)
+// that can be composed onto any Amplifier session, plus two experiments that fork the
+// bundle to test how the specialists perform.
+digraph ux_ergonomist {
+    rankdir=LR
+    fontname="Helvetica"
+    fontsize=12
+    label="UX Ergonomics Bundle (ux-ergonomist v0.2.0)\nA reusable team of usability, accessibility, and evidence specialists for Amplifier"
+    labelloc=t
+    labeljust=c
+    nodesep=0.6
+    ranksep=0.7
+    bgcolor="white"
+    source_hash="93d5085aea6212026b5ec0911a880467cb721ac6a018383c5d7b3e7a462d897c"
+
+    node [fontname="Helvetica", fontsize=11, style="filled,rounded"]
+    edge [fontname="Helvetica", fontsize=9]
+
+    root_ux_ergonomist [label="Entry Point — UX Ergonomics\nux-ergonomist v0.2.0\n0 tools · 0 agents\n~270 tok aggregate", shape=box, fillcolor="#80cbc4", style="filled,rounded,bold", penwidth=2]
+
+    subgraph cluster_behaviors {
+        label="Behaviors — Reusable Capability Packages"
+        style="filled"
+        fillcolor="#f9f9f9"
+        color="#999999"
+
+        beh_behavior_ux_ergonomist [label="UX Specialist Team Wiring\nbehavior-ux-ergonomist\n1 tools · 1 ctx\n~2017 tok", shape=box, fillcolor="#e0f2f1", style="filled,rounded"]
+    }
+
+    subgraph cluster_agents {
+        label="Agents — The Specialists You Can Ask For Help"
+        style="filled"
+        fillcolor="#f9f9f9"
+        color="#999999"
+
+        agt_accessibility_auditor [label="Checks Designs Work For Everyone\naccessibility-auditor\n~292 tok desc", shape=box, fillcolor="#c8e6c9", style="filled,rounded"]
+        agt_evidence_researcher [label="Finds Proof Behind UX Claims\nevidence-researcher\n~264 tok desc", shape=box, fillcolor="#c8e6c9", style="filled,rounded"]
+        agt_human_agent_designer [label="Designs How People Work With AI\nhuman-agent-designer\n~303 tok desc", shape=box, fillcolor="#c8e6c9", style="filled,rounded"]
+        agt_ux_ergonomist [label="Lead Reviewer — Ease Of Use\nux-ergonomist\n~503 tok desc", shape=box, fillcolor="#c8e6c9", style="filled,rounded"]
+    }
+
+    subgraph cluster_experiments {
+        label="Experiments — Trial Setups That Test The Specialists"
+        style="filled"
+        fillcolor="#f9f9f9"
+        color="#999999"
+
+        exp_adversarial_verification [label="Do Reviewers Catch Each Other's Misses?\nadversarial-verification", shape=box, fillcolor="#e1bee7", style="filled,rounded"]
+        exp_single_vs_specialist [label="One Generalist vs. Four Specialists\nsingle-vs-specialist", shape=box, fillcolor="#e1bee7", style="filled,rounded"]
+    }
+
+    subgraph cluster_context {
+        label="Context Files — Background Notes Loaded Into Every Session"
+        style="filled"
+        fillcolor="#f9f9f9"
+        color="#999999"
+
+        ctx_awareness_md [label="What This Bundle Offers\nawareness.md\n~140 tok", shape=box, fillcolor="#e1bee7", style="filled,rounded"]
+    }
+
+    subgraph cluster_legend {
+        label="Legend — How To Read This Diagram"
+        style="filled"
+        fillcolor="white"
+        color="#cccccc"
+        fontsize=9
+
+        leg_root [label="root bundle\n(the entry point)", shape=box, fillcolor="#80cbc4", style="filled,rounded,bold", fontsize=9]
+        leg_behavior [label="behavior\n(reusable wiring)", shape=box, fillcolor="#e0f2f1", style="filled,rounded", fontsize=9]
+        leg_agent [label="agent\n(a specialist)", shape=box, fillcolor="#c8e6c9", style="filled,rounded", fontsize=9]
+        leg_module [label="module\n(code that runs)", shape=box, fillcolor="#bbdefb", style="filled,rounded", fontsize=9]
+        leg_provider [label="provider\n(the AI model)", shape=box, fillcolor="#e0e0e0", style="filled,rounded", fontsize=9]
+        leg_context [label="context\n(background notes)", shape=box, fillcolor="#e1bee7", style="filled,rounded", fontsize=9]
+        leg_standalone [label="standalone\n(runs on its own)", shape=box, fillcolor="#80cbc4", style="filled,rounded", fontsize=9]
+        leg_experiment [label="experiment\n(a trial setup)", shape=box, fillcolor="#e1bee7", style="filled,rounded", fontsize=9]
+        leg_ext_cost [label="ext+cost\n(borrowed, adds tokens)", shape=box, fillcolor="#80cbc4", style="dashed", color="red", penwidth=2, fontsize=9]
+        leg_ext_muted [label="ext+no-cost\n(borrowed, free here)", shape=box, fillcolor="#f5f5f5", style="dashed", fontsize=9]
+    }
+
+    disclaimer [label="Token estimates: ~4 chars/token\nSolid border = local (counted)\nDashed + red = external, hidden cost (not counted)\nDashed + muted = external, no cost\nExcludes: sub-session costs, runtime-dynamic", shape=note, fillcolor="#eceff1", style="filled", fontsize=9]
+
+    ext_foundation [label="Shared Amplifier Base Toolkit\nfoundation\n(external, cost)", shape=box, fillcolor="#80cbc4", style="dashed", color="red", penwidth=2]
+    ext_githttps___github_com_microsoft_amplifier_bundle_modes_main [label="Focused Working Modes\namplifier-bundle-modes\n(external, cost)", shape=box, fillcolor="#80cbc4", style="dashed", color="red", penwidth=2]
+
+    root_ux_ergonomist -> ext_foundation [style=dashed]
+    root_ux_ergonomist -> ext_githttps___github_com_microsoft_amplifier_bundle_modes_main [style=dashed]
+    root_ux_ergonomist -> beh_behavior_ux_ergonomist [label="composes"]
+    beh_behavior_ux_ergonomist -> agt_ux_ergonomist [label="owns"]
+    beh_behavior_ux_ergonomist -> agt_evidence_researcher [label="owns"]
+    beh_behavior_ux_ergonomist -> agt_accessibility_auditor [label="owns"]
+    beh_behavior_ux_ergonomist -> agt_human_agent_designer [label="owns"]
+    beh_behavior_ux_ergonomist -> ctx_awareness_md [style=dotted, color=purple]
+    root_ux_ergonomist -> ctx_awareness_md [style=dotted, color=purple]
+    exp_adversarial_verification -> root_ux_ergonomist [label="forks", style=dashed]
+    exp_single_vs_specialist -> root_ux_ergonomist [label="forks", style=dashed]
+}

@@ -1,6 +1,7 @@
 bundle:
   name: behavior-ux-ergonomist
   version: 0.2.0
+  description: Composable UX Ergonomist behavior — four context-sink agents, ergonomic awareness context, and the bundle's eight on-demand skills, wired to work whether composed whole or as this behavior alone.
 
 agents:
   include:
@@ -8,6 +9,33 @@ agents:
     - ux-ergonomist:evidence-researcher
     - ux-ergonomist:accessibility-auditor
     - ux-ergonomist:human-agent-designer
+
+# Wires this repo's skills/ directory into tool-skills. A top-level `skills:`
+# frontmatter key is NOT sufficient -- the loader silently ignores it; the
+# tool-skills module must be configured explicitly via `config.skills:`.
+#
+# `source:` is declared here (not left to foundation) so this behavior mounts
+# tool-skills correctly even when composed standalone (the behavior-only
+# include path pulls neither foundation nor amplifier-bundle-skills). When
+# this bundle's own bundle.md is used instead, foundation transitively
+# includes amplifier-bundle-skills:behaviors/skills.yaml, which declares the
+# same `module: tool-skills` with an identical `source:`; amplifier-foundation
+# merges module entries by module id (deep_merge via merge_module_lists), so
+# the two `config.skills` lists concatenate (deduplicated) rather than
+# conflict -- this repo's skills are additive to the Microsoft-curated set.
+#
+# The @ux-ergonomist:skills bundle reference resolves via tool-skills'
+# mention_resolver-backed source handling (config.skills accepts local paths,
+# git+ URLs, and `@namespace:path` bundle references). Resolution is deferred
+# to the first provider:request in the session (the mention_resolver
+# capability is registered by the app layer after modules mount), so skills
+# are present from the model's first turn onward, not necessarily at mount().
+tools:
+  - module: tool-skills
+    source: git+https://github.com/microsoft/amplifier-bundle-skills@main#subdirectory=modules/tool-skills
+    config:
+      skills:
+        - "@ux-ergonomist:skills"
 
 context:
   include:

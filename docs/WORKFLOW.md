@@ -39,5 +39,5 @@ Review the failed-job recovery workflow for operations analysts.
 ```bash
 amplifier tool invoke recipes operation=execute \
   recipe_path=recipes/ergonomics-full-cycle.yaml \
-  context='{"target":"./prototype","users_and_task":"Operations analyst resolves a failed job","decision":"What should change before implementation?"}'
+  context='{"target":"./prototype","user_and_task":"Operations analyst resolves a failed job","decision":"What should change before implementation?"}'
 ```

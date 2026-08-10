@@ -4,7 +4,7 @@ version: 1.0.0
 
 context:
   target: ""
-  users_and_task: ""
+  user_and_task: ""
   decision: ""
   available_evidence: ""
   constraints: ""
@@ -16,7 +16,7 @@ steps:
     prompt: |
       FRAME PHASE
       Target: {{target}}
-      Users and task: {{users_and_task}}
+      Users and task: {{user_and_task}}
       Decision: {{decision}}
       Available evidence: {{available_evidence}}
       Constraints: {{constraints}}

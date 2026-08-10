@@ -2,6 +2,7 @@
 bundle:
   name: ux-ergonomist
   version: 0.2.0
+  description: Evidence-led human factors and UX expertise for digital products and AI-agent experiences.
 
 includes:
   - bundle: foundation
