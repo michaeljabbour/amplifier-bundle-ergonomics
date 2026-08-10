@@ -1,0 +1,53 @@
+name: ergonomic-review
+description: Evidence-led review of a digital product, flow, prototype, or implementation.
+version: 1.0.0
+
+context:
+  target: ""
+  user_and_task: ""
+  available_evidence: ""
+  risk_context: ""
+
+steps:
+  - id: frame-and-inspect
+    agent: ux-ergonomist:ux-ergonomist
+    prompt: |
+      Frame and inspect {{target}} for {{user_and_task}}.
+      Available evidence: {{available_evidence}}
+      Risk context: {{risk_context}}
+      Produce the task model, assumptions, observed evidence, and candidate breakdowns. Do not recommend solutions yet.
+    output: diagnostic_frame
+    timeout: 600
+
+  - id: evidence-check
+    agent: ux-ergonomist:evidence-researcher
+    prompt: |
+      Review this diagnostic frame:
+      {{diagnostic_frame}}
+
+      Identify which claims are supported, which are expert inspection, and which require more evidence. Supply primary sources when available.
+    output: evidence_map
+    timeout: 600
+
+  - id: accessibility-check
+    agent: ux-ergonomist:accessibility-auditor
+    prompt: |
+      Review {{target}} and this frame for accessibility and inclusive-use concerns:
+      {{diagnostic_frame}}
+
+      Distinguish confirmed findings from runtime and affected-user tests still needed.
+    output: accessibility_review
+    timeout: 600
+
+  - id: synthesize
+    agent: ux-ergonomist:ux-ergonomist
+    prompt: |
+      Synthesize a decision-ready ergonomic review from:
+
+      Diagnostic frame: {{diagnostic_frame}}
+      Evidence map: {{evidence_map}}
+      Accessibility review: {{accessibility_review}}
+
+      Prioritize by consequence and confidence. Include precise recommendations, trade-offs, acceptance criteria, and the lightest valid validation plan.
+    output: ergonomic_review
+    timeout: 600
