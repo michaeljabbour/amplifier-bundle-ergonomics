@@ -2,6 +2,8 @@
 
 An evidence-led human factors and UX expert for digital products and AI-agent experiences.
 
+Version 0.2.0 adds an automatic six-mode workflow, reusable procedural skills, lifecycle and adversarial ergonomics, experiments, executable structural validation, and CI.
+
 ## Why this bundle
 
 `amplifier-bundle-design-intelligence` covers visual and component craft. This bundle covers the upstream and evaluative layer: user tasks, cognitive ergonomics, accessibility, information architecture, human-AI control, evidence quality, and UX validation.
@@ -17,6 +19,11 @@ An evidence-led human factors and UX expert for digital products and AI-agent ex
 - a UX evaluation playbook
 - a source and freshness policy
 - three reusable recipes for ergonomic review, agent-experience review, and research-to-decision synthesis
+- a full-cycle automated recipe plus longitudinal and sociotechnical reviews
+- six interactive modes that automatically advance when their phase contract is satisfied
+- eight on-demand procedural skills
+- lifecycle, adversarial, macroergonomic, cognitive-accessibility, and temporal-interaction contexts
+- two experiment definitions and a weighted evaluation rubric
 - an adversarial benchmark suite
 - an evidence-backed design brief
 
@@ -58,6 +65,51 @@ Available recipes:
 - `recipes/ergonomic-review.yaml`
 - `recipes/agent-experience-review.yaml`
 - `recipes/research-to-decision.yaml`
+- `recipes/ergonomics-full-cycle.yaml`
+- `recipes/longitudinal-agent-impact-review.yaml`
+- `recipes/sociotechnical-workflow-review.yaml`
+
+## Interactive workflow
+
+Start with:
+
+```text
+/ergonomics-frame
+Review the failed-job recovery workflow for operations analysts.
+```
+
+The bundle moves through:
+
+```text
+ergonomics-frame
+  → ergonomics-research
+  → ergonomics-review
+  → ergonomics-recommend
+  → ergonomics-verify
+  → ergonomics-finish
+```
+
+Each mode defines its required artifact and allowed transitions. When the artifact is complete, the agent calls Amplifier's `mode` tool to advance. It pauses for material ambiguity, unavailable evidence, consequential user decisions, external actions, or a blocked verification result. See `docs/WORKFLOW.md`.
+
+## Skills
+
+- `task-analysis`
+- `ux-evidence-synthesis`
+- `cognitive-walkthrough`
+- `accessibility-evaluation`
+- `human-agent-authority-map`
+- `ux-acceptance-criteria`
+- `usability-study-design`
+- `ergonomics-verification`
+
+## Validation
+
+```bash
+python -m pip install pyyaml
+python tests/validate_bundle.py
+```
+
+The validator checks YAML and frontmatter, agent discoverability, recipe-agent references, mode transitions, contributed capability reachability, namespaced references, and workflow completeness. GitHub Actions runs it on pushes and pull requests.
 
 ## Composition
 
@@ -65,4 +117,4 @@ Pair it with Microsoft's design-intelligence bundle when the task needs both erg
 
 ## Status
 
-Version 0.1.0 is a research-backed initial design. Validate against real cases before treating its severity ratings or recommendations as calibrated.
+Version 0.2.0 is research-backed but not yet empirically calibrated. Run the included experiments and benchmark cases before treating severity ratings, delegation choices, or recommendations as calibrated.
