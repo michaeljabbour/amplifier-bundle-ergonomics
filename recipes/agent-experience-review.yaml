@@ -1,0 +1,39 @@
+name: agent-experience-review
+description: Review an AI-agent experience for authority, control, trust calibration, and recovery.
+version: 1.0.0
+
+context:
+  agent_experience: ""
+  users_and_goals: ""
+  actions_and_consequences: ""
+  evidence: ""
+
+steps:
+  - id: authority-and-failure-model
+    agent: ux-ergonomist:human-agent-designer
+    prompt: |
+      Analyze {{agent_experience}} for {{users_and_goals}}.
+      Actions and consequences: {{actions_and_consequences}}
+      Evidence: {{evidence}}
+      Produce an authority map and failure/recovery model.
+    output: authority_model
+    timeout: 600
+
+  - id: evidence-calibration
+    agent: ux-ergonomist:evidence-researcher
+    prompt: |
+      Evaluate the claims and assumptions in this human-agent authority model:
+      {{authority_model}}
+      Identify empirical support, standards or guidance, contradictions, and gaps.
+    output: evidence_calibration
+    timeout: 600
+
+  - id: final-agent-ux-design
+    agent: ux-ergonomist:ux-ergonomist
+    prompt: |
+      Produce the final human-agent experience design from:
+      {{authority_model}}
+      {{evidence_calibration}}
+      Include interaction requirements, proportional approval rules, intervention and recovery, memory boundaries, completion evidence, trade-offs, and acceptance criteria.
+    output: agent_experience_design
+    timeout: 600
