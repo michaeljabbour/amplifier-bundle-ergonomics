@@ -1,0 +1,20 @@
+name: adversarial-verification
+description: Measure whether an independent verification phase reduces unsupported ergonomic claims.
+
+variants:
+  - id: synthesis-only
+    recipe: recipes/ergonomic-review.yaml
+  - id: verified-full-cycle
+    recipe: recipes/ergonomics-full-cycle.yaml
+
+dataset: tests/benchmark-cases.yaml
+primary_measure: unsupported_claim_rate
+guardrails:
+  - accessibility_overclaim_rate
+  - fabricated_evidence_rate
+  - high_consequence_authority_miss_rate
+secondary_measures:
+  - actionability
+  - correction_precision
+  - latency
+  - token_cost
