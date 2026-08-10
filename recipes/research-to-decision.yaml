@@ -1,0 +1,27 @@
+name: research-to-decision
+description: Turn mixed UX evidence into prioritized product decisions and a validation plan.
+version: 1.0.0
+
+context:
+  decision: ""
+  evidence_sources: ""
+  product_context: ""
+
+steps:
+  - id: evidence-map
+    agent: ux-ergonomist:evidence-researcher
+    prompt: |
+      Build a claim-evidence map for this decision: {{decision}}
+      Product context: {{product_context}}
+      Evidence sources: {{evidence_sources}}
+    output: evidence_map
+    timeout: 600
+
+  - id: decision-synthesis
+    agent: ux-ergonomist:ux-ergonomist
+    prompt: |
+      Turn this evidence map into a product decision:
+      {{evidence_map}}
+      State what the evidence supports, the recommended move, trade-offs, acceptance criteria, and the smallest discriminating next study.
+    output: decision_brief
+    timeout: 600
