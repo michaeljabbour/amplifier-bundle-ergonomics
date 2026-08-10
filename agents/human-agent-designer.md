@@ -43,6 +43,10 @@ Return an authority map, failure and recovery model, interaction requirements, t
 
 @ux-ergonomist:context/knowledge/source-policy.md
 
+@ux-ergonomist:context/knowledge/lifecycle-ergonomics.md
+
+@ux-ergonomist:context/knowledge/adversarial-ergonomics.md
+
 ---
 
 @foundation:context/shared/common-agent-base.md
